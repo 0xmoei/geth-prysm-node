@@ -89,6 +89,7 @@ services:
   geth:
     image: ethereum/client-go:stable
     container_name: geth
+    network_mode: host
     restart: unless-stopped
     ports:
       - 30303:30303
@@ -102,7 +103,7 @@ services:
     command:
       - --sepolia
       - --http
-      - --http.api=eth,net,web3
+      - --http.api=eth,net,web3,engine
       - --http.addr=0.0.0.0
       - --authrpc.addr=0.0.0.0
       - --authrpc.vhosts=*
@@ -119,6 +120,7 @@ services:
   prysm:
     image: gcr.io/prysmaticlabs/prysm/beacon-chain
     container_name: prysm
+    network_mode: host
     restart: unless-stopped
     volumes:
       - /root/ethereum/consensus:/data
@@ -128,21 +130,26 @@ services:
     ports:
       - 4000:4000
       - 3500:3500
+      - 3600:3600 # New port for Blob Sink API
     command:
       - --sepolia
       - --accept-terms-of-use
       - --datadir=/data
       - --disable-monitoring
       - --rpc-host=0.0.0.0
-      - --execution-endpoint=http://geth:8551
+      - --execution-endpoint=http://127.0.0.1:8551
       - --jwt-secret=/data/jwt.hex
       - --rpc-port=4000
       - --grpc-gateway-corsdomain=*
       - --grpc-gateway-host=0.0.0.0
       - --grpc-gateway-port=3500
-      - --min-sync-peers=7
+      - --min-sync-peers=3
       - --checkpoint-sync-url=https://checkpoint-sync.sepolia.ethpandaops.io
       - --genesis-beacon-api-url=https://checkpoint-sync.sepolia.ethpandaops.io
+      - --enable-blobs=true                        # Enabling Blob Sink
+      - --blob-sync-method="direct"                # Direct Blob Sync Method
+      - --blob-api-host=0.0.0.0                    # Blob Sink API host
+      - --blob-api-port=3600                       # Blob Sink API port
     logging:
       driver: "json-file"
       options:
