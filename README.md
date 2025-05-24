@@ -234,17 +234,17 @@ sudo ufw allow from 127.0.0.1 to any port 8545 proto tcp
 sudo ufw allow from 127.0.0.1 to any port 3500 proto tcp
 ```
 
-* Allow/Deny ports for others IPs: (When your client, e.g. Aztec Sequencer, running on another server)
-```bash
-# Deny ports on all IPs
-sudo ufw deny 8545/tcp
-sudo ufw deny 3500/tcp
-
 # Allow ports on favorite IPs
 sudo ufw allow from <your-vps-ip> to any port 8545 proto tcp
 sudo ufw allow from <your-vps-ip> to any port 3500 proto tcp
 ```
 Replace `<your-vps-ip>` with the **IP** you want to allow ports to.
+
+* Allow/Deny ports for others IPs: (When your client, e.g. Aztec Sequencer, running on another server)
+```bash
+# Deny ports on all IPs
+sudo ufw deny 8545/tcp
+sudo ufw deny 3500/tcp
 
 * Reload Firewall:
 ```bash
