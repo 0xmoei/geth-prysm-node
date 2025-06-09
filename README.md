@@ -253,6 +253,13 @@ sudo ufw deny 3500/tcp
 sudo ufw reload
 ```
 
+**Important Notes for Firewall `Allow`/`Deny` Settings:**
+* `ufw` listens to rules sequencially
+* View the rule sequence using `ufw status number`
+* Delete a specific rule with `ufw delete <number>`
+* When whitelisting specific IPs for specific ports, place `allow` rules before the corresponding `deny` rule for the port.
+* Example: To allow IP `134.12.44.177` access to port `8545`, ensure the `deny` rule for port `8545` is deleted first, then add the `allow` rule for the **IP** and **port**, and finally reapply the `deny` rule for the port.
+
 ---
 
 ## Step 8. Getting the RPC Endpoints
