@@ -1,4 +1,9 @@
-We were running this node for Aztec sequencer node, since there's a new update to sepolia becaming to fusaka, follow the steps to avoid getting slashed:
+# Fusaka (Pectra) Update Guide for Geth and Prysm Ethereum Node
+
+This guide provides step-by-step instructions to update your Ethereum node running Geth and Prysm for the Fusaka (Pectra) hard fork.
+
+We were running this node for Aztec sequencer node, proceed to avoid getting slahed.
+
 ### Stop node
 ```
 cd ethereum
