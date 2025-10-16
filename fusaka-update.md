@@ -127,6 +127,7 @@ If `is_syncing` is `false` and `sync_distance` is `0`, the beacon node is fully 
 ```
 * If `is_syncing` is `true`, the node is still syncing, and `sync_distance` indicates how many slots behind it is.
 
+---
 
 ## Execute the following to signal the proposal
 This part is for Aztec sequencer nodes:
