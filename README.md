@@ -118,7 +118,7 @@ services:
         max-file: "3"
 
   prysm:
-    image: gcr.io/prysmaticlabs/prysm/beacon-chain
+    image: gcr.io/offchainlabs/prysm/beacon-chain:stable  # Updated repo/tag for v6.1.2+
     container_name: prysm
     network_mode: host
     restart: unless-stopped
@@ -145,6 +145,8 @@ services:
       - --min-sync-peers=3
       - --checkpoint-sync-url=https://checkpoint-sync.sepolia.ethpandaops.io
       - --genesis-beacon-api-url=https://checkpoint-sync.sepolia.ethpandaops.io
+      - --subscribe-all-data-subnets  # Added this flag to subscription for supernode
+      - --verbosity=debug  # Added this temp for troubleshooting
     logging:
       driver: "json-file"
       options:
