@@ -1,3 +1,4 @@
+We were running this node for Aztec sequencer node, since there's a new update to sepolia becaming to fusaka, follow the steps to avoid getting slashed:
 ### Stop node
 ```
 cd ethereum
@@ -120,3 +121,17 @@ If `is_syncing` is `false` and `sync_distance` is `0`, the beacon node is fully 
 {"data":{"head_slot":"12345","sync_distance":"100","is_syncing":true}}
 ```
 * If `is_syncing` is `true`, the node is still syncing, and `sync_distance` indicates how many slots behind it is.
+
+
+### Execute the following to signal the proposal
+This part is for Aztec sequencer nodes:
+```
+curl -X POST http://localhost:8880 \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "jsonrpc":"2.0",
+    "method":"nodeAdmin_setConfig",
+    "params":[{"governanceProposerPayload":"0x9D8869D17Af6B899AFf1d93F23f863FF41ddc4fa"}],
+    "id":1
+  }'
+```
