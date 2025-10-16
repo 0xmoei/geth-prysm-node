@@ -4,7 +4,7 @@ This guide provides step-by-step instructions to update your Ethereum node runni
 
 We were running this node for Aztec sequencer node, proceed to avoid getting slahed.
 
-### Stop node
+## Stop node
 ```
 cd ethereum
 ```
@@ -12,12 +12,12 @@ cd ethereum
 docker compose down -v
 ```
 
-### Edit `docker-compose.yml`
+## Edit docker-compose.yml
 ```
 nano docker-compose.yml
 ```
 
-### Replace the following code
+## Replace the following code
 * I added some descriptions that what part of the previous `docker-compose.yml` has been changed
 ```
 services:
@@ -89,14 +89,14 @@ services:
         max-file: "3"
 ```
 
-### Restart node
+## Restart node
 ```
 docker compose up -d
 ```
 
 
 
-### Check if nodes are synced
+## Check if nodes are synced
 ➡️**Execution Node (Geth)**
 ```
 curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}' http://localhost:8545
@@ -128,7 +128,7 @@ If `is_syncing` is `false` and `sync_distance` is `0`, the beacon node is fully 
 * If `is_syncing` is `true`, the node is still syncing, and `sync_distance` indicates how many slots behind it is.
 
 
-### Execute the following to signal the proposal
+## Execute the following to signal the proposal
 This part is for Aztec sequencer nodes:
 ```
 curl -X POST http://localhost:8880 \
