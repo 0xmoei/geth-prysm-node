@@ -18,7 +18,7 @@ nano docker-compose.yml
 ```
 
 ## Replace the following code
-* I added some descriptions that what part of the previous `docker-compose.yml` has been changed
+* I added descriptions of changes made to the previous `docker-compose.yml` file.
 ```
 services:
   geth:
