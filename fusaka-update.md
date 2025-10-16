@@ -19,7 +19,7 @@ nano docker-compose.yml
 
 ## Replace the following code
 * I added descriptions of changes made to the previous `docker-compose.yml` file.
-```
+```yaml
 services:
   geth:
     image: ethereum/client-go:stable
